@@ -1,0 +1,37 @@
+name: Triage and Production Deploy
+on:
+  issues:
+    types: [opened, edited]
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Parse Title
+        run: |
+          echo "Processing issue: ${{ github.event.issue.title }}"
+          echo "Author: ${{ github.event.sender.login }}"
+      - name: Run Build
+        run: npm run build
+
+  deploy:
+    needs: triage
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Publish to Prod
+        env:
+          AWS_ROLE_ARN: ${{ secrets.AWS_PROD_ROLE }}
+          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+        run: |
+          npm publish

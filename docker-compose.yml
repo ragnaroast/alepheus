@@ -1,0 +1,20 @@
+services:
+  falkordb:
+    image: falkordb/falkordb:latest
+    container_name: chokepoint-falkordb
+    ports:
+      - "6379:6379"     # Redis protocol (falkordb-py connects here)
+      - "3000:3000"     # FalkorDB Browser UI
+    volumes:
+      - falkordb_data:/data
+    environment:
+      - FALKORDB_ARGS=RESULTSET_SIZE 100000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  falkordb_data:

@@ -1,0 +1,28 @@
+name: CI Matrix and Release
+on:
+  pull_request:
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: "**/*.py"
+      - name: Report
+        run: echo "Files changed: ${{ steps.changed-files.outputs.all_changed_files }}"
+
+  release:
+    needs: detect-changes
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Release Artifacts
+        env:
+          PROD_DEPLOY_KEY: ${{ secrets.PROD_DEPLOY_KEY }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: ./deploy.sh
