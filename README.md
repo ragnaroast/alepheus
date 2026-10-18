@@ -95,10 +95,17 @@ Derived dynamically at ingest connecting `Input`, `Step`, `Job`, `Secret`, and `
 ## 5. Setup Guide & API Keys
 
 ### Step 1: Clone and Configure Environment
-Copy `.env` and configure your credentials:
+Copy the environment template to `.env`:
 
 ```bash
-# In the repository root
+# Linux / macOS:
+cp .env.example .env
+
+# Windows (PowerShell):
+Copy-Item .env.example .env
+
+# Windows (CMD):
+copy .env.example .env
 ```
 
 Open `.env` in any editor:
@@ -212,16 +219,16 @@ Run `python -m chokepoint.cli eval` to execute the benchmark harness comparing C
 ==========================================================================================
 Repository Fixture           | Planted  | Flat Alerts  | Min-Cut Fixes  | Fix Reduction 
 -----------------------------+----------+---------------+----------------+----------------
-org/issue-automation-app     | 2        | 5             | 1              |       80.0%
-org/tj-actions-pipeline      | 1        | 3             | 1              |       66.7%
-org/artifact-poison-app      | 1        | 4             | 1              |       75.0%
+org/issue-automation-app     | 2        | 7             | 1              |       85.7%
+org/tj-actions-pipeline      | 1        | 4             | 1              |       75.0%
+org/artifact-poison-app      | 1        | 6             | 1              |       83.3%
 org/monorepo-enterprise      | 3        | 8             | 2              |       75.0%
 -----------------------------+----------+---------------+----------------+----------------
-OVERALL AGGREGATE            | -        | 20            | 5              |       75.0%
+OVERALL AGGREGATE            | -        | 25            | 5              |       80.0%
 ==========================================================================================
 ```
 
-**Key Takeaway**: ChokePoint achieves a **75% reduction in developer remediation burden** by identifying high-leverage choke points rather than requiring developers to fix every unpinned action or shell string across the enterprise.
+**Key Takeaway**: ChokePoint achieves an **80.0% reduction in developer remediation burden** by identifying high-leverage choke points rather than requiring developers to fix every unpinned action or shell string across the enterprise.
 
 ---
 
