@@ -1,5 +1,5 @@
-# ChokePoint 🛡️
-### CI/CD Attack-Path Analysis Agent & Minimum-Cut Remediation Engine
+# Alepheus 🛡️
+### CI/CD Attack-Path Analysis Agent & Minimum-Cut Remediation Engine (ChokePoint)
 
 [![FalkorDB](https://img.shields.io/badge/FalkorDB-Graph_Database-red.svg)](https://falkordb.com/)
 [![LLM](https://img.shields.io/badge/LLM-Google_Gemini_2.5_Flash_(Free)-blue.svg)](https://aistudio.google.com/)
