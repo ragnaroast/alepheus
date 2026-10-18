@@ -1,4 +1,4 @@
-# FlowSentry 🛡️
+# ChokePoint 🛡️
 ### CI/CD Attack-Path Analysis Agent & Minimum-Cut Remediation Engine (ChokePoint)
 
 [![FalkorDB](https://img.shields.io/badge/FalkorDB-Graph_Database-red.svg)](https://falkordb.com/)
